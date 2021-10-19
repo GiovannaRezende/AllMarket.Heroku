@@ -1,7 +1,7 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class tb_produto extends Model {
+export default class infoa_sti_produto extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_produto: {
@@ -10,49 +10,45 @@ export default class tb_produto extends Model {
       allowNull: false,
       primaryKey: true
     },
+    ds_imagem_produto: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
     nm_produto: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(45),
       allowNull: true
     },
-    ds_categoria: {
-      type: DataTypes.STRING(255),
+    ds_codigo_interno: {
+      type: DataTypes.STRING(45),
       allowNull: true
     },
-    vl_preco_de: {
-      type: DataTypes.DECIMAL(10,2),
-      allowNull: true
-    },
-    vl_preco_por: {
-      type: DataTypes.DECIMAL(10,2),
-      allowNull: true
-    },
-    vl_avaliacao: {
-      type: DataTypes.DECIMAL(10,2),
-      allowNull: true
-    },
-    ds_produto: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    qtd_estoque: {
+    id_categoria: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    img_produto: {
-      type: DataTypes.STRING(800),
+    ds_descricao: {
+      type: DataTypes.STRING(255),
       allowNull: true
     },
-    bt_ativo: {
-      type: DataTypes.BOOLEAN,
+    vl_valor: {
+      type: DataTypes.DECIMAL(15,2),
       allowNull: true
     },
-    dt_inclusao: {
-      type: DataTypes.DATE,
+    nr_estoque_minimo: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    nr_estoque_maximo: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    nr_estoque_atual: {
+      type: DataTypes.INTEGER,
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'tb_produto',
+    tableName: 'infoa_sti_produto',
     timestamps: false,
     indexes: [
       {
@@ -63,8 +59,15 @@ export default class tb_produto extends Model {
           { name: "id_produto" },
         ]
       },
+      {
+        name: "id_categoria",
+        using: "BTREE",
+        fields: [
+          { name: "id_categoria" },
+        ]
+      },
     ]
   });
-  return tb_produto;
+  return infoa_sti_produto;
   }
 }

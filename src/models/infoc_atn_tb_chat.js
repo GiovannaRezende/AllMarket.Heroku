@@ -1,34 +1,34 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class tb_usuario extends Model {
+export default class infoc_atn_tb_chat extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_usuario: {
+    id_chat: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    nm_usuario: {
+    id_sala: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    ds_mensagem: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    dt_mensagem: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    tp_enviado_por: {
       type: DataTypes.STRING(100),
-      allowNull: true
-    },
-    ds_login: {
-      type: DataTypes.STRING(400),
-      allowNull: true
-    },
-    ds_senha: {
-      type: DataTypes.STRING(400),
-      allowNull: true
-    },
-    img_usuario: {
-      type: DataTypes.STRING(500),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'tb_usuario',
+    tableName: 'infoc_atn_tb_chat',
     timestamps: false,
     indexes: [
       {
@@ -36,11 +36,18 @@ export default class tb_usuario extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_usuario" },
+          { name: "id_chat" },
+        ]
+      },
+      {
+        name: "id_sala",
+        using: "BTREE",
+        fields: [
+          { name: "id_sala" },
         ]
       },
     ]
   });
-  return tb_usuario;
+  return infoc_atn_tb_chat;
   }
 }

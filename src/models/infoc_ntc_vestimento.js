@@ -1,26 +1,30 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class tb_sala extends Model {
+export default class infoc_ntc_vestimento extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_sala: {
+    id_vestimento: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    nm_sala: {
-      type: DataTypes.STRING(100),
+    tp_vestimento: {
+      type: DataTypes.STRING(255),
       allowNull: true
     },
-    bt_ativa: {
+    ds_valor: {
       type: DataTypes.BOOLEAN,
+      allowNull: true
+    },
+    ds_complemento: {
+      type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'tb_sala',
+    tableName: 'infoc_ntc_vestimento',
     timestamps: false,
     indexes: [
       {
@@ -28,11 +32,11 @@ export default class tb_sala extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_sala" },
+          { name: "id_vestimento" },
         ]
       },
     ]
   });
-  return tb_sala;
+  return infoc_ntc_vestimento;
   }
 }

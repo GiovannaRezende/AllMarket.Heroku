@@ -1,34 +1,46 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class tb_chat extends Model {
+export default class infoc_tht_lugar extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_chat: {
+    id_lugar: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    id_sala: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    id_usuario: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    ds_mensagem: {
+    nm_lugar: {
       type: DataTypes.STRING(100),
       allowNull: true
     },
-    dt_mensagem: {
+    ds_avaliacao: {
+      type: DataTypes.DECIMAL(10,5),
+      allowNull: true
+    },
+    ds_edereco: {
+      type: DataTypes.STRING(100),
+      allowNull: true
+    },
+    ds_imagem: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    ds_informacao: {
+      type: DataTypes.STRING(100),
+      allowNull: true
+    },
+    dt_dias: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    dt_horario: {
       type: DataTypes.DATE,
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'tb_chat',
+    tableName: 'infoc_tht_lugar',
     timestamps: false,
     indexes: [
       {
@@ -36,25 +48,11 @@ export default class tb_chat extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_chat" },
-        ]
-      },
-      {
-        name: "id_sala",
-        using: "BTREE",
-        fields: [
-          { name: "id_sala" },
-        ]
-      },
-      {
-        name: "id_usuario",
-        using: "BTREE",
-        fields: [
-          { name: "id_usuario" },
+          { name: "id_lugar" },
         ]
       },
     ]
   });
-  return tb_chat;
+  return infoc_tht_lugar;
   }
 }
